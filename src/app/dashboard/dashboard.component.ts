@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TransactionsService, ITransaction } from '../api/transactions.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,5 +10,8 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-
+  transactionList: ITransaction[] = [];
+  constructor(private tx: TransactionsService) {
+    this.tx.getTransactions$().subscribe(res => this.transactionList = res.data);
+  }
 }

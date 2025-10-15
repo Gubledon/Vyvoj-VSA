@@ -10,27 +10,27 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 
 export const routes: Routes = [
   {
-    path: 'basic-accounts/basic-accounts-detail/:id',
+    path: 'basic-accounts/basic-accounts-detail',
     component: BasicAccountsDetailComponent
   },
 
   {
-    path: 'basic-accounts/basic-accounts-detail/basic-detail/:id',
+    path: 'basic-accounts/basic-accounts-detail/basic-detail',
     component: BasicDetailComponent
   },
 
   {
-    path: 'basic-accounts/basic-accounts-detail/withdrawal-detail/:id',
+    path: 'basic-accounts/basic-accounts-detail/withdrawal-detail',
     component: WithdrawalDetailComponent
   },
 
   {
-    path: 'basic-accounts/basic-accounts-list/:id',
+    path: 'basic-accounts/basic-accounts-list',
     component: BasicAccountsListComponent
   },
 
   {
-    path: 'dashboard/:id',
+    path: 'dashboard',
     component: DashboardComponent
   },
 

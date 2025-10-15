@@ -1,1 +1,13 @@
 <p>dashboard works!</p>
+
+<h2>Transactions</h2>
+
+@if (transactionList?.length) {
+  @for (item of transactionList; track item.transactionId) {
+    <div>
+      #{{ item.transactionId }} — {{ item.amount }} — {{ item.bankCode }} — {{ item.issueDate }}
+    </div>
+  }
+} @else {
+  <p>Žiadne dáta.</p>
+}

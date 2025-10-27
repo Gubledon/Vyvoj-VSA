@@ -6,6 +6,7 @@ import { WithdrawalDetailComponent } from './basic-accounts/basic-accounts-detai
 
 import { BasicAccountsListComponent } from './basic-accounts/basic-accounts-list/basic-accounts-list.component'
 import { DashboardComponent } from './dashboard/dashboard.component'
+import { TransactionDetailComponent } from './dashboard/transaction-detail/transaction-detail.component';
 
 
 export const routes: Routes = [
@@ -34,5 +35,7 @@ export const routes: Routes = [
     component: DashboardComponent
   },
 
-  { path: '**', component: DashboardComponent }
+  { path: 'dashboard/transaction-detail/:id', 
+    component: TransactionDetailComponent 
+  } 
 ];

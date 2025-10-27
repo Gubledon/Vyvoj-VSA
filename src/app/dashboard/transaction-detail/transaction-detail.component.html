@@ -1,0 +1,17 @@
+<h2>Detail transakcie</h2>
+
+@if (transaction) {
+  <div class="detail">
+    <p><strong>ID:</strong> {{ transaction.transactionId }}</p>
+    <p><strong>Meno:</strong> {{ transaction.fullName }}</p>
+    <p><strong>Typ:</strong> {{ transaction.transactionType }}</p>
+    <p><strong>Číslo účtu:</strong> {{ transaction.accountNumber }}</p>
+    <p><strong>Kód banky:</strong> {{ transaction.bankCode }}</p>
+    <p><strong>Dátum:</strong> {{ transaction.issueDate }}</p>
+    <p><strong>Suma (€):</strong> {{ transaction.amount | number:'1.2-2' }}</p>
+  </div>
+} @else {
+  <p>Načítavam dáta...</p>
+}
+
+

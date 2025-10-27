@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 
 export interface ITransaction {
   transactionId: number;
-  amount: number;
+  fullName: string;
+  transactionType: number;
+  accountNumber: string;
   bankCode: string;
   issueDate: string;
-  transactionType?: number;
-  fullName?: string;
-  accountNumber?: string;
+  amount: number;
 }
 
 @Injectable({ providedIn: 'root' })

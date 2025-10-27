@@ -1,13 +1,50 @@
 <p>dashboard works!</p>
 
-<h2>Transactions</h2>
+<h2>Zoznam transakcií</h2>
 
-@if (transactionList?.length) {
-  @for (item of transactionList; track item.transactionId) {
-    <div>
-      #{{ item.transactionId }} — {{ item.amount }} — {{ item.bankCode }} — {{ item.issueDate }}
-    </div>
-  }
+@if (transactionList.length) {
+  <table mat-table [dataSource]="transactionList" class="mat-elevation-z2 full-width-table">
+    <!-- Meno -->
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef> Meno </th>
+      <td mat-cell *matCellDef="let item"> {{ item.fullName }} </td>
+    </ng-container>
+
+    <!-- Typ -->
+    <ng-container matColumnDef="transactionType">
+      <th mat-header-cell *matHeaderCellDef> Typ transakcie </th>
+      <td mat-cell *matCellDef="let item"> {{ item.transactionType }} </td>
+    </ng-container>
+
+    <!-- Číslo účtu -->
+    <ng-container matColumnDef="accountNumber">
+      <th mat-header-cell *matHeaderCellDef> Číslo účtu </th>
+      <td mat-cell *matCellDef="let item"> {{ item.accountNumber }} </td>
+    </ng-container>
+
+    <!-- Suma -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Hodnota </th>
+      <td mat-cell *matCellDef="let item"> {{ item.amount | number:'1.2-2' }} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="action">
+  <th mat-header-cell *matHeaderCellDef> Akcia </th>
+<td mat-cell *matCellDef="let item">
+  <button
+    mat-icon-button
+    color="primary"
+    [routerLink]="['/dashboard/transaction-detail', item.transactionId]"
+    aria-label="Zobraziť detail transakcie"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+</td>
+</ng-container>
+    <tr mat-header-row *matHeaderRowDef="['fullName','transactionType','accountNumber','amount','action']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['fullName','transactionType','accountNumber','amount','action'];"></tr>
+  </table>
 } @else {
   <p>Žiadne dáta.</p>
 }

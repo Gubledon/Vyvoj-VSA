@@ -1,0 +1,6 @@
+@MyApiň_HostAddress = http://localhost:5128
+
+GET {{MyApiň_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

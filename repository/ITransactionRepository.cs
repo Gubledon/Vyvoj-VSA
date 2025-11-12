@@ -6,6 +6,6 @@ namespace MyApiň.Repository
     public interface ITransactionRepository
     {
         List<Transaction> GetAllTransactions();
-        Transaction? GetTransaction(int id); // podľa slidu
+        Transaction? GetTransaction(int id);
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using MyApiň.Models;
+using MyApiň.DatabaseModel;
 
 namespace MyApiň.Repository
 {
     public interface ITransactionRepository
     {
         List<Transaction> GetAllTransactions();
-        Transaction? GetTransaction(int id);
+        Transaction? GetTransactionById(int id);
     }
 }

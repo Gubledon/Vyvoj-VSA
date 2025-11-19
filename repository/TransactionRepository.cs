@@ -1,37 +1,37 @@
 using System.Collections.Generic;
 using System.Linq;
-using MyApiň.Models;
+using Microsoft.EntityFrameworkCore;
+using MyApiň.DatabaseModel;
 
 namespace MyApiň.Repository
 {
     public class TransactionRepository : ITransactionRepository
     {
-        private readonly List<Transaction> transactions;
+        private readonly Whiyes5oContext context;
 
-        public TransactionRepository()
+        public TransactionRepository(Whiyes5oContext context)
         {
-            transactions = new List<Transaction>
-            {
-                new Transaction
-                {
-                    TransactionId = 1,
-                },
-                new Transaction
-                {
-                    TransactionId = 2,
-                }
-            };
+             this.context = context;
         }
 
         public List<Transaction> GetAllTransactions()
         {
-            return transactions;
+            var result = this.context.Transactions
+                .Include(p => p.User)
+                .Include(p => p.TransactionType)
+                .ToList();
+
+            return result;
         }
 
-        public Transaction? GetTransaction(int id)
+        public Transaction? GetTransactionById(int id)
         {
-            // TransactionId je decimal; int sa porovnáva OK (prevedie sa na decimal)
-            return transactions.FirstOrDefault(p => p.TransactionId == id);
+            var result = this.context.Transactions
+                .Include(p => p.User)
+                .Include(p => p.TransactionType)
+                .FirstOrDefault(p => p.Id == id);
+
+            return result;
         }
     }
 }

@@ -1,11 +1,20 @@
 using Scalar.AspNetCore;
+using Microsoft.EntityFrameworkCore;
+
+using MyApiň.DatabaseModel;    
+
 using MyApiň.Repository;
 using MyApiň.Service;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddOpenApi(); 
+builder.Services.AddOpenApi();
+
+builder.Services.AddDbContext<Whiyes5oContext>();
+
 
 var app = builder.Build();
 
@@ -20,4 +29,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

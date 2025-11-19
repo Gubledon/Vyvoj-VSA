@@ -1,27 +1,64 @@
-using MyApiň.Models;
+using System.Collections.Generic;
 using MyApiň.Repository;
+using MyApiň.ViewModel;
 
 namespace MyApiň.Service
 {
     public class TransactionService : ITransactionService
     {
-        private readonly ITransactionRepository transactionRepository;
+        private readonly ITransactionRepository repository;
 
-        public TransactionService(ITransactionRepository transactionRepository)
+        public TransactionService(ITransactionRepository repository)
         {
-            this.transactionRepository = transactionRepository;
+            this.repository = repository;
         }
 
-        public List<Transaction> GetAllTransactions()
+        public List<TransactionViewModel> GetAllTransactions()
         {
-            var transactions = transactionRepository.GetAllTransactions();
-            return transactions;
+            var transactionsViewModel = new List<TransactionViewModel>();
+
+            var transactions = this.repository .GetAllTransactions();
+
+            foreach (var transaction in transactions)
+            {
+                var transactionViewModel = new TransactionViewModel
+                {
+                    TransactionId   = transaction.Id,
+                    FullName        = transaction.User?.Name ?? string.Empty,
+                    TransactionType = transaction.TransactionType?.Name ?? string.Empty,
+                    AccountNumber   = transaction.AccountNumber,
+                    BankCode        = transaction.BankCode,
+                    IssueDate       = transaction.IssueDate,
+                    Amount          = transaction.Amount
+                };
+
+                transactionsViewModel.Add(transactionViewModel);
+            }
+
+            return transactionsViewModel;
         }
 
-        public Transaction? GetTransactionById(int id)
+        // GET BY ID
+        public TransactionViewModel? GetTransactionById(int id)
         {
-            var transaction = transactionRepository.GetTransaction(id);
-            return transaction;
+            var transaction = this.repository .GetTransactionById(id);
+
+            if (transaction == null)
+                return null;
+
+            var transactionViewModel = new TransactionViewModel
+            {
+                TransactionId   = transaction.Id,
+                FullName        = transaction.User?.Name ?? string.Empty,
+                TransactionType = transaction.TransactionType?.Name ?? string.Empty,
+                AccountNumber   = transaction.AccountNumber,
+                BankCode        = transaction.BankCode,
+                IssueDate       = transaction.IssueDate,
+                Amount          = transaction.Amount
+            };
+
+            return transactionViewModel;
         }
     }
 }
+

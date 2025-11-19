@@ -1,20 +1,13 @@
-namespace MyApiň.Models
+namespace MyApiň.ViewModel
 {
-    public class Transaction
+    public class TransactionViewModel
     {
         public decimal TransactionId { get; set; }
         public string FullName { get; set; }
-        public TransactionType TransactionType { get; set; }
+        public string TransactionType { get; set; }
         public string AccountNumber { get; set; }
         public string BankCode { get; set; }
         public DateTime IssueDate { get; set; }
         public decimal Amount { get; set; }
-    }
-
-    public enum TransactionType
-    {
-        Incoming = 1,
-        OutGoing = 2,
-        WithDraw = 3
     }
 }

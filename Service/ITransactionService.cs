@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using MyApiň.Models;
+
+using MyApiň.ViewModel;
 
 namespace MyApiň.Service
 {
     public interface ITransactionService
     {
-        List<Transaction> GetAllTransactions();
-        Transaction? GetTransactionById(int id);
+        List<TransactionViewModel> GetAllTransactions();
+        TransactionViewModel? GetTransactionById(int id);
     }
 }

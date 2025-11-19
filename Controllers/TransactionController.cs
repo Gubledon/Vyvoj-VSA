@@ -1,18 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using MyApiň.Models;
 using MyApiň.Service;
+using MyApiň.ViewModel;
 
 namespace MyApiň.Controllers;
 
 [ApiController]
-[Route("api/[controller]")] // => /api/transaction
+[Route("api/[controller]")]
 public class TransactionController : ControllerBase
 {
     private readonly ITransactionService _service;
     private readonly ILogger<TransactionController> _logger;
 
-    // constructor dependency injection
     public TransactionController(ITransactionService service, ILogger<TransactionController> logger)
     {
         _service = service ?? throw new ArgumentNullException(nameof(service));
@@ -20,21 +19,23 @@ public class TransactionController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(List<Transaction>), StatusCodes.Status200OK)]
-    public ActionResult<List<Transaction>> GetAllTransactions()
+    [ProducesResponseType(typeof(List<TransactionViewModel>), StatusCodes.Status200OK)]
+    public ActionResult<List<TransactionViewModel>> GetAllTransactions()
     {
         var items = _service.GetAllTransactions();
         return Ok(items);
     }
 
     [HttpGet("{id:int}")]
-    [ProducesResponseType(typeof(Transaction), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(TransactionViewModel), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<Transaction> GetTransactionById(int id)
+    public ActionResult<TransactionViewModel> GetTransactionById(int id)
     {
         var trx = _service.GetTransactionById(id);
-        return trx is null ? NotFound() : Ok(trx);
+
+        if (trx is null)
+            return NotFound();
+
+        return Ok(trx);
     }
 }
-
-

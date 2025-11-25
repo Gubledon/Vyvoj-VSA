@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyApiň")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5ae1d83f418fa7798df87fa2b503d9e9726981d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c06af681705706c788b1afff62084830124199a8")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyApiň")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyApiň")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
